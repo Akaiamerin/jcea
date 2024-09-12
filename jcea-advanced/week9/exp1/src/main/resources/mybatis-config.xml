@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC
+        "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <properties resource="druid.properties"/>
+
+    <settings>
+        <setting name="cacheEnabled" value="true"/>
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="aggressiveLazyLoading" value="true"/>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+    <typeAliases>
+        <package name="exp1.model"/>
+    </typeAliases>
+
+    <environments default="mysql">
+        <environment id="mysql">
+            <transactionManager type="JDBC"/>
+            <dataSource type="exp1.utils.DruidDataSourceFactory">
+                <property name="driverClassName" value="${driverClassName}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+                <property name="initialSize" value="${initialSize}"/>
+                <property name="maxActive" value="${maxActive}"/>
+                <property name="maxWait" value="${maxWait}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <!--        <mapper class="exp1.mapper.UserMapper"/>-->
+        <package name="exp1.mapper"/>
+    </mappers>
+</configuration>
